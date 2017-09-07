@@ -161,7 +161,7 @@ def rank_day_data(request,account):
     today = datetime.date.today()
     rank_arr = []
     #at now we can just rank all users' data, not friends
-    rank_users = DayDrinkData.objects.filter(date = today).order_by('volume_dose')
+    rank_users = DayDrinkData.objects.filter(date = today).order_by('-volume_dose')
     for obj in rank_users:
         rank_arr.append(obj.toDict())
     rank_json = json.dumps(rank_arr,ensure_ascii=False)
