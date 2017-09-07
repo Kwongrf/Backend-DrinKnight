@@ -20,6 +20,12 @@ from drinknight import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^login/(?P<account>[A-Za-z0-9]+)/(?P<password>[^\s]+)/$',views.login),
+    url(r'^register/(?P<account>[A-Za-z0-9]+)/$',views.register),
     url(r'^user/(?P<account>[A-Za-z0-9]+)/profile/$',views.handle_user_data),
     url(r'^user/(?P<account>[A-Za-z0-9]+)/drinkdatas/$',views.handle_drink_data),
+    url(r'^user/(?P<account>[A-Za-z0-9]+)/drinkdatas/(?P<year>[0-9]+)/$',views.get_year_data),
+    url(r'^user/(?P<account>[A-Za-z0-9]+)/drinkdatas/(?P<year>[0-9]+)/(?P<month>[0-9]+)/$',views.get_month_data),
+    url(r'^user/(?P<account>[A-Za-z0-9]+)/drinkdatas/(?P<year>[0-9]+)/(?P<month>[0-9]+)/(?P<day>[0-9]+)/$',views.get_day_data),
+    url(r'^user/(?P<account>[A-Za-z0-9]+)/rankdatas/$',views.rank_day_data),
 ]

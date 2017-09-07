@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class User(models.Model):
     account = models.CharField(max_length=20,primary_key=True)
     password = models.CharField(max_length=32)
@@ -30,3 +31,24 @@ class DrinkData(models.Model):
     dose = models.FloatField(default='0')
     def toDict(self):
         return {u'account':self.account,u'time':self.time.strftime('%Y-%m-%d %H:%M:%S'),u'dose':self.dose}
+
+class DayDrinkData(models.Model):
+    account = models.CharField(max_length=30,primary_key=True)
+    date = models.DateField(auto_now_add=True)
+    volume_dose = models.FloatField(default='0')
+    def toDict(self):
+        return {u'account':self.account,u'date':self.date.strftime('%Y-%m-%d'),u'dose':self.volume_dose}
+
+class MonthDrinkData(models.Model):
+    account = models.CharField(max_length=30,primary_key=True)
+    month = models.DateField()
+    volume_dose = models.FloatField(default='0')
+    def toDict(self):
+        return {u'account':self.account,u'month':self.month.strftime('%Y-%m'),u'volume_dose':self.volume_dose}
+
+class YearDrinkData(models.Model):
+    account = models.CharField(max_length=30,primary_key=True)
+    year = models.DateField()
+    volume_dose = models.FloatField(default='0')
+    def toDict(self):
+        return {u'account':self.account,u'year':self.year.strftime('%Y'),u'volume_dose':self.volume_dose}
